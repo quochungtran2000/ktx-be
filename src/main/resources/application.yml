@@ -2,8 +2,8 @@ spring:
   datasource:
     username: sql6404680
     password: C1hPvE41jw
-    url: jdbc:mysql://sql6.freemysqlhosting.net/sql6404680
-    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://sql6.freemysqlhosting.net:3306/sql6404680
+    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
     hibernate:
