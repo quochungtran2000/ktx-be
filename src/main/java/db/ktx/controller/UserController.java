@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/user")
 public class UserController {
 	@Autowired
 	private UserService service;
@@ -41,6 +42,11 @@ public class UserController {
 	@PutMapping("/update")
 	public User updateUser (@RequestBody User user){
 		return service.updateUser(user);
+	}
+
+	@PutMapping("/updatepassword")
+	public User updatePassword(@RequestBody User user){
+		return service.updatePassword(user);
 	}
 	
 }
