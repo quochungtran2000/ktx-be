@@ -18,3 +18,20 @@ public class KtxApplication {
 	}
 
 }
+
+@RestController
+class MyController {
+	
+	@Autowired
+	IHocsinh repo;
+	@GetMapping("/")
+	public List<Hocsinh> home(){
+		return repo.findAll();
+	}
+	@GetMapping("/{id}")
+	public Optional<Hocsinh> getbyId(
+		@PathVariable("id") String id
+		){
+		return repo.findById(id);
+	}
+}

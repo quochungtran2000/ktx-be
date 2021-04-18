@@ -1,17 +1,15 @@
 package db.ktx.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-  	private int userId;
-
+  private int userId;
 	private String username;
 	private String password;
 	private String name;
@@ -22,22 +20,7 @@ public class User {
 	private String reset_password;
 	private Date create_at;
 	private Date update_at;
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name="userid")
-	, inverseJoinColumns = @JoinColumn(name = "roleid"))
-	private Set<Role> roles = new HashSet<>();
 
-    public User(String username, String password) {
-    	this.username = username;
-    	this.password = password;
-    }
-
-    public Set<Role> getRoles(){
-		return roles;
-	}
-	public void setRoles(Set<Role> roles){
-		this.roles = roles;
-	}
 public String getName() {
 	return name;
 }
