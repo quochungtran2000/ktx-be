@@ -1,11 +1,11 @@
 spring:
   datasource:
-    username: sql6404680
-    password: C1hPvE41jw
-    url: jdbc:mysql://sql6.freemysqlhosting.net/sql6404680
-    driver-class-name: com.mysql.jdbc.Driver
+    username: test
+    password: test
+    url: jdbc:postgresql://postgresql.medofa.bedigital.vn:5432/ktx-api
+    driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
-    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQL81Dialect
