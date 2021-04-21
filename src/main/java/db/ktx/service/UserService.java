@@ -1,16 +1,20 @@
 //package db.ktx.service;
 //
+//import db.ktx.JavaWebToken.UserDetailsImpl;
 //import db.ktx.entity.User;
 //import db.ktx.repository.UserRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.stereotype.Service;
 //
-//import java.util.Date;
+//import javax.transaction.Transactional;
 //import java.util.List;
 //import java.util.Optional;
 //
 //@Service
-//public class UserService {
+//public class UserService{
 //	@Autowired
 //	private UserRepository repository;
 //
@@ -30,7 +34,7 @@
 //		return repository.findById(id);
 //	}
 //
-//	public User getUserByUsername(String username){
+//	public Optional<User> getUserByUsername(String username){
 //		return repository.findByUsername(username);
 //	}
 //	public User updateUser(User updateUser){
@@ -38,8 +42,8 @@
 //		baseUser.setUsername(updateUser.getUsername());
 //		baseUser.setAge(updateUser.getAge());
 //		baseUser.setEmail(updateUser.getEmail());
-//		baseUser.setUpdate_at(new Date());
 //		return repository.save(baseUser);
 //	}
+//
 //
 //}
