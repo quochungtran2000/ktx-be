@@ -1,14 +1,16 @@
 package db.ktx.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.awt.geom.GeneralPath;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "user" , uniqueConstraints = {@UniqueConstraint(columnNames = "username"),
-@UniqueConstraint(columnNames = "email")})
+@Table(name = "user" )
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,32 +18,38 @@ public class User {
 	private String username;
 	private String password;
 	private String email;
+	private String role;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	 Set<Post> listPost;
+
+	public Set<Post> getListPost() {
+		return listPost;
+	}
+
+	public void setListPost(Set<Post> listPost) {
+		this.listPost = listPost;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	//  private String name;
 	//  private int age;
 	//	private String phone;
 	//	private String img_url;
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name="user_id")
-			, inverseJoinColumns = @JoinColumn(name = "role_id"))
-	private Set<Role> roles = new HashSet<>();
-
 	public User(){
 
 	}
-    public User(String username, String password, String email) {
-    	this.username = username;
-    	this.password = password;
-    	this.email = email;
-    }
-
-    public Set<Role> getRoles(){
-		return roles;
+	public User(int id){
+		this.id = id;
 	}
-	public void setRoles(Set<Role> roles){
-		this.roles = roles;
-	}
-
 	public int getId() {
 		return id;
 	}
