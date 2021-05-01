@@ -21,14 +21,14 @@ public class PostService {
         return postRepository.findAll();
     }
 
-//    public Post updatePost(Post post){
-//        Post basePost = postRepository.findById(post.getId()).orElse(null);
-//        basePost.setTitle(post.getTitle());
-//        basePost.setContent(post.getContent());
+    public Post updatePost(Post post){
+        Post basePost = postRepository.findById(post.getId()).orElse(null);
+        basePost.setTitle(post.getTitle());
+        basePost.setContent(post.getContent());
 //        basePost.setCategory_id(post.getCategory_id());
-//
-//        return postRepository.save(basePost);
-//    }
+
+        return postRepository.save(basePost);
+    }
     public void deleteByTitle(int id){
         postRepository.deleteById(id);
     }

@@ -24,6 +24,18 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	 Set<Post> listPost;
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	List<Comment> listComment;
+
+	public List<Comment> getListComment() {
+		return listComment;
+	}
+
+	public void setListComment(List<Comment> listComment) {
+		this.listComment = listComment;
+	}
+
 	public Set<Post> getListPost() {
 		return listPost;
 	}

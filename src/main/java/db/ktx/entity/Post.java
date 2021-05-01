@@ -2,7 +2,10 @@ package db.ktx.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "post")
@@ -16,14 +19,42 @@ public class Post {
     @ManyToOne()
     @JoinColumn(name = "username", nullable = false)
     private User user;
-//
-//    @ManyToOne()
-//    @JoinColumn(name = "category_name", nullable = false)
-//    private Category category;
-//
+
+    @ManyToOne()
+    @JoinColumn(name = "category_name", nullable = false)
+    private Category category;
+
 //    @ManyToOne()
 //    @JoinColumn(name = "location_name", nullable = false)
 //    private Location location;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "post")
+    List<Comment> listComment;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Comment> getListComment() {
+        return listComment;
+    }
+
+    public void setListComment(List<Comment> listComment) {
+        this.listComment = listComment;
+    }
 
     public Post(){
 
@@ -71,14 +102,7 @@ public class Post {
         this.user  = userid;
     }
 
-//    public Category getCategory_id() {
-//        return category;
-//    }
-//
-//    public void setCategory_id(Category category_id) {
-//        this.category = category_id;
-//    }
-//
+
 //    public Location getLocation_id() {
 //        return location;
 //    }

@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
-//@CrossOrigin(origins = "*" , maxAge = 3600)
+@CrossOrigin(origins = "*" , maxAge = 3600)
 public class PostController {
 
     @Autowired
@@ -30,17 +30,15 @@ public class PostController {
     public Post createPost(@Validated @RequestBody Post post){
         return  postService.insertPost(post);
     }
-//
-//    @PutMapping("/update")
-//    public Post updatePost(@RequestBody Post post){
-//        return postService.updatePost(post);
-//    }
+
+    @PutMapping("/update")
+    public Post updatePost(@RequestBody Post post){
+        return postService.updatePost(post);
+    }
 
     @DeleteMapping(path = "{id}")
     public String deletePost(@PathVariable("id") int id){
         postService.deleteByTitle(id);
         return "Xoa thanh cong";
     }
-
-
 }
