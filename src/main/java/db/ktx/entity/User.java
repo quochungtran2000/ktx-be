@@ -2,23 +2,30 @@ package db.ktx.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "user" )
+@CrossOrigin
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
 	private String username;
+
 	private String password;
-	private String email;
-	private String role;
+
+//	private String email;
+//
+//	private String role;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -27,6 +34,7 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	List<Comment> listComment;
+
 
 	public List<Comment> getListComment() {
 		return listComment;
@@ -43,14 +51,14 @@ public class User {
 	public void setListPost(Set<Post> listPost) {
 		this.listPost = listPost;
 	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
+//
+//	public String getRole() {
+//		return role;
+//	}
+//
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
 
 	//  private String name;
 	//  private int age;
@@ -110,14 +118,14 @@ public class User {
 //		this.phone = phone;
 //	}
 //
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
+//	public String getEmail() {
+//		return email;
+//	}
 //
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+////
 //	public String getImg_url() {
 //		return img_url;
 //	}

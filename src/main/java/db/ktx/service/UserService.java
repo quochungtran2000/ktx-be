@@ -41,7 +41,7 @@ public class UserService{
 	}
 	public User updateUser(User updateUser){
 		User baseUser = repository.findById(updateUser.getId()).orElse(null);
-		baseUser.setEmail(updateUser.getEmail());
+//		baseUser.setEmail(updateUser.getEmail());
 		return repository.save(baseUser);
 	}
 	//Doi mat khau

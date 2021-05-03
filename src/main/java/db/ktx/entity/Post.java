@@ -13,6 +13,7 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postid;
+
     private String title;
     private String content;
 
