@@ -12,7 +12,7 @@ public class BannerService {
 	@Autowired
 	private BannerRepository repository;
 
-	public Banner insertBanner (Banner banner) { return repository.save(banner) ;}
+	public Banner insertBanner (Banner banner) { return repository.save(banner);}
 	
 	public List<Banner> getBanner(){
 	return repository.findAll();

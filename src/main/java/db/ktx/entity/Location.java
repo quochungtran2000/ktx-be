@@ -1,8 +1,13 @@
 package db.ktx.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "location")
@@ -12,6 +17,17 @@ public class Location {
 	private String name;
 	private String address;
 
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "location")
+//	Set<Post> listPost;
+//
+//	public Set<Post> getListPost() {
+//		return listPost;
+//	}
+//
+//	public void setListPost(Set<Post> listPost) {
+//		this.listPost = listPost;
+//	}
 	public int getLocation_id() {
 		return location_id;
 	}

@@ -1,10 +1,11 @@
 package db.ktx.repository;
 
-
-import db.ktx.entity.Banner;
+import db.ktx.entity.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BannerRepository extends JpaRepository<Banner, Integer> {
+public interface CommentRepository extends JpaRepository<Comment , Integer> {
+
+
 }

@@ -1,50 +1,99 @@
-//package db.ktx.entity;
-//
-//import javax.persistence.Entity;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
-//import java.util.Date;
-//
-//@Entity
-//@Table(name = "user")
-//public class User {
-//	@Id
-//  private int userId;
-//	private String username;
-//	private String password;
-//	private String name;
-//	private int age;
-//	private String phone;
+package db.ktx.entity;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+import javax.persistence.*;
+import java.awt.geom.GeneralPath;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+@Entity
+@Table(name = "user" )
+@CrossOrigin
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+	private String username;
+
+	private String password;
+
 //	private String email;
-//	private String img_url;
-//	private String reset_password;
-//	private Date create_at;
-//	private Date update_at;
 //
-//	public int getUserId() {
-//		return userId;
+//	private String role;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	 Set<Post> listPost;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	List<Comment> listComment;
+
+
+	public List<Comment> getListComment() {
+		return listComment;
+	}
+
+	public void setListComment(List<Comment> listComment) {
+		this.listComment = listComment;
+	}
+
+	public Set<Post> getListPost() {
+		return listPost;
+	}
+
+	public void setListPost(Set<Post> listPost) {
+		this.listPost = listPost;
+	}
+//
+//	public String getRole() {
+//		return role;
 //	}
 //
-//	public void setUserId(int userId) {
-//		this.userId = userId;
+//	public void setRole(String role) {
+//		this.role = role;
 //	}
-//
-//	public String getUsername() {
-//		return username;
-//	}
-//
-//	public void setUsername(String username) {
-//		this.username = username;
-//	}
-//
-//	public String getPassword() {
-//		return password;
-//	}
-//
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
-//
+
+	//  private String name;
+	//  private int age;
+	//	private String phone;
+	//	private String img_url;
+	public User(){
+
+	}
+	public User(int id){
+		this.id = id;
+	}
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 //	public String getName() {
 //		return name;
 //	}
@@ -76,7 +125,7 @@
 //	public void setEmail(String email) {
 //		this.email = email;
 //	}
-//
+////
 //	public String getImg_url() {
 //		return img_url;
 //	}
@@ -84,28 +133,4 @@
 //	public void setImg_url(String img_url) {
 //		this.img_url = img_url;
 //	}
-//
-//	public String getReset_password() {
-//		return reset_password;
-//	}
-//
-//	public void setReset_password(String reset_password) {
-//		this.reset_password = reset_password;
-//	}
-//
-//	public Date getCreate_at() {
-//		return create_at;
-//	}
-//
-//	public void setCreate_at(Date create_at) {
-//		this.create_at = create_at;
-//	}
-//
-//	public Date getUpdate_at() {
-//		return update_at;
-//	}
-//
-//	public void setUpdate_at(Date update_at) {
-//		this.update_at = update_at;
-//	}
-//}
+}
