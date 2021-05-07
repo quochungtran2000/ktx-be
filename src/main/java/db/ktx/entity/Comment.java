@@ -1,7 +1,6 @@
 package db.ktx.entity;
 
 
-import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;

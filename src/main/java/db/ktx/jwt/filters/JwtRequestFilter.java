@@ -2,7 +2,6 @@ package db.ktx.jwt.filters;
 
 import db.ktx.jwt.configs.MyUserDetailsService;
 import db.ktx.jwt.util.JwtUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

@@ -2,7 +2,6 @@ package db.ktx.jwt.util;
 
 import db.ktx.jwt.configs.MyUserDetails;
 import io.jsonwebtoken.*;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +11,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-@Slf4j
 public class JwtUtil {
 
     private String SECRET_KEY = "secret";
