@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@GetMapping(path = "{userid}")
-	public Optional<User> getUserById (@PathVariable("userid") int id){
+	public Optional<User> getUserById (@PathVariable("userid") Long id){
 		return service.getUserById(id);
 	}
 
@@ -64,7 +64,7 @@ public class UserController {
 //	}
 	@DeleteMapping(path = "{userid}")
 	@ResponseBody
-	public String deleteById(@PathVariable("userid") int id){
+	public String deleteById(@PathVariable("userid") Long id){
 		service.deleteUserById(id);
 		return "Successfully";
 	}

@@ -2,9 +2,12 @@ package db.ktx.entity;
 
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,26 +15,25 @@ import java.util.List;
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int postid;
-
+    private int id;
     private String title;
     private String content;
 
     @ManyToOne()
-    @JoinColumn(name = "username", nullable = false)
+    @JoinColumn(name = "user", nullable = false)
     private User user;
 
     @ManyToOne()
-    @JoinColumn(name = "category_name", nullable = false)
+    @JoinColumn(name = "category", nullable = false)
     private Category category;
 
-//    @ManyToOne()
-//    @JoinColumn(name = "location_name", nullable = false)
-//    private Location location;
+    @ManyToOne()
+    @JoinColumn(name = "location", nullable = false)
+    private Location location;
 
     @JsonIgnore
     @OneToMany(mappedBy = "post")
-    List<Comment> listComment;
+    List<Comment> listComment = new ArrayList<>();
 
     public User getUser() {
         return user;
@@ -60,23 +62,33 @@ public class Post {
     public Post(){
 
     }
+    @JsonCreator
+    public Post(@JsonProperty("id") int id,@JsonProperty("title") String title, @JsonProperty("content") String content,
+                @JsonProperty("user") User user,@JsonProperty("category") Category category,
+                @JsonProperty("location") Location location){
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.location = location;
+        this.user = user;
 
-
-//    public Post( String title, String content, Category category_id, Location location_id, User userid){
-//        this.title = title;
-//        this.content = content;
-//        this.category = category_id;
-//        this.location = location_id;
-//        this.user = userid;
-//
-//    }
+    }
 
     public int getId() {
-        return postid;
+        return id;
     }
 
     public void setId(int id) {
-        this.postid = id;
+        this.id = id;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getTitle() {
@@ -95,20 +107,6 @@ public class Post {
         this.content = content;
     }
 
-    public User getUserid() {
-        return user;
-    }
-
-    public void setUserid(User userid) {
-        this.user  = userid;
-    }
 
 
-//    public Location getLocation_id() {
-//        return location;
-//    }
-//
-//    public void setLocation_id(Location location_id) {
-//        this.location = location_id;
-//    }
 }

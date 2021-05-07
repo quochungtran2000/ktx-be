@@ -14,11 +14,22 @@ public class MyUserDetails implements UserDetails {
 
     User user;
 
-
-    public MyUserDetails (User user){
-        super();
+    public MyUserDetails(User user) {
         this.user = user;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+//
+//    public MyUserDetails (User user){
+//        super();
+//        this.user = user;
+//    }
 
     @Override
     public String getPassword() {

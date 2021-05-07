@@ -4,9 +4,9 @@ import db.ktx.entity.Post;
 import db.ktx.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class PostService {
@@ -15,7 +15,11 @@ public class PostService {
     private PostRepository postRepository;
 
     public Post insertPost(Post post){
-          return postRepository.save(post);
+          return  postRepository.save(post);
+
+    }
+    public Optional<Post> getById(int id){
+        return postRepository.findById(id);
     }
     public List<Post> getAllPost(){
         return postRepository.findAll();
@@ -25,7 +29,7 @@ public class PostService {
         Post basePost = postRepository.findById(post.getId()).orElse(null);
         basePost.setTitle(post.getTitle());
         basePost.setContent(post.getContent());
-//        basePost.setCategory_id(post.getCategory_id());
+//      asePost.setCategory_id(post.getCategory_id());
 
         return postRepository.save(basePost);
     }
