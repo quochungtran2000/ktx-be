@@ -3,9 +3,6 @@ package db.ktx.service;
 import db.ktx.entity.User;
 import db.ktx.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -32,7 +29,7 @@ public class UserService{
 		return repository.findAll();
 	}
 
-	public Optional<User> getUserById(int id){
+	public Optional<User> getUserById(Long id){
 		return repository.findById(id);
 	}
 
@@ -40,13 +37,17 @@ public class UserService{
 		return repository.findByUsername(username);
 	}
 	public User updateUser(User updateUser){
-		User baseUser = repository.findById(updateUser.getId()).orElse(null);
-//		baseUser.setEmail(updateUser.getEmail());
+		User baseUser = repository.findById(updateUser.getUserid()).orElse(null);
+		baseUser.setEmail(updateUser.getEmail());
+		baseUser.setName(updateUser.getName());
+		baseUser.setAge(updateUser.getAge());
+		baseUser.setPhone(updateUser.getPhone());
+		baseUser.setAddress(updateUser.getAddress());
 		return repository.save(baseUser);
 	}
 	//Doi mat khau
 	public User updatePassword(User password){
-		User passUser = repository.findById(password.getId()).orElse(null);
+		User passUser = repository.findById(password.getUserid()).orElse(null);
 		passUser.setPassword(password.getPassword());
 		return  repository.save(passUser);
 	}
@@ -62,7 +63,7 @@ public class UserService{
 		return "true";
 	}
 	//DeleteUserById
-	public void deleteUserById(int id) {
+	public void deleteUserById(Long id) {
 		repository.deleteById(id);
 	}
 

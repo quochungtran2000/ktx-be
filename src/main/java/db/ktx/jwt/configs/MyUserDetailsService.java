@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -15,16 +16,22 @@ import java.util.Optional;
 @Service
 public class MyUserDetailsService implements UserDetailsService{
     @Autowired
-    UserRepository repository;
+    private  UserRepository repository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        User user = new User();
-//        Optional<User> user = repository.findByUsername(username);
-//        return  user.map(MyUserDetails::new)
-//                .orElseThrow(() -> new UsernameNotFoundException(username + "Not Found"));
-        User user = repository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(username +"Not Found"));
-
+        User user = repository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(username));
         return new MyUserDetails(user);
+
     }
+//    // JWTAuthenticationFilter sẽ sử dụng hàm này
+//    @Transactional
+//    public UserDetails loadUserById(Long id) {
+//        User user = repository.findById(id).orElseThrow(
+//                () -> new UsernameNotFoundException("User not found with id : " + id)
+//        );
+//
+//        return new MyUserDetails(user);
+//    }
 }

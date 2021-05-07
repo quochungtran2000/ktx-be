@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,17 +18,19 @@ public class Location {
 	private String name;
 	private String address;
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "location")
-//	Set<Post> listPost;
-//
-//	public Set<Post> getListPost() {
-//		return listPost;
-//	}
-//
-//	public void setListPost(Set<Post> listPost) {
-//		this.listPost = listPost;
-//	}
+	@JsonIgnore
+	@OneToMany(mappedBy = "location")
+	List<Post> listPost = new ArrayList<>();
+	public Location(){
+
+	}
+	public List<Post> getListPost() {
+		return listPost;
+	}
+
+	public void setListPost(List<Post> listPost) {
+		this.listPost = listPost;
+	}
 	public int getLocation_id() {
 		return location_id;
 	}

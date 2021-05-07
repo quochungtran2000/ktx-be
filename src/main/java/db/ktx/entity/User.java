@@ -1,7 +1,9 @@
 package db.ktx.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
@@ -17,24 +19,23 @@ import java.util.Set;
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Long userid;
 	private String username;
-
 	private String password;
-
-//	private String email;
-//
-//	private String role;
-
-	@JsonIgnore
-	@OneToMany(mappedBy = "user")
-	 Set<Post> listPost;
+	private String email;
+	private String name;
+	private int age;
+	private String phone;
+	private String address;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
-	List<Comment> listComment;
+	List<Post> listPost = new ArrayList<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	List<Comment> listComment = new ArrayList<>();
+	public User(){}
 
 	public List<Comment> getListComment() {
 		return listComment;
@@ -44,38 +45,34 @@ public class User {
 		this.listComment = listComment;
 	}
 
-	public Set<Post> getListPost() {
+	public List<Post> getListPost() {
 		return listPost;
 	}
 
-	public void setListPost(Set<Post> listPost) {
+	public void setListPost(List<Post> listPost) {
 		this.listPost = listPost;
 	}
-//
-//	public String getRole() {
-//		return role;
-//	}
-//
-//	public void setRole(String role) {
-//		this.role = role;
-//	}
-
-	//  private String name;
-	//  private int age;
-	//	private String phone;
-	//	private String img_url;
-	public User(){
+	@JsonCreator
+	public User(@JsonProperty("userid") Long userid, @JsonProperty("username") String username,
+				@JsonProperty("password") String password, @JsonProperty("name") String name,
+				@JsonProperty("age") int age, @JsonProperty("email") String email, @JsonProperty("address") String address,
+				@JsonProperty("phone") String phone){
+		this.userid = userid;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.name = name;
+		this.address = address;
+		this.age = age;
+		this.phone = phone;
 
 	}
-	public User(int id){
-		this.id = id;
-	}
-	public int getId() {
-		return id;
+	public Long getUserid() {
+		return userid;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserid(Long userid) {
+		this.userid = userid;
 	}
 
 	public String getUsername() {
@@ -94,43 +91,43 @@ public class User {
 		this.password = password;
 	}
 
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
-//
-//	public int getAge() {
-//		return age;
-//	}
-//
-//	public void setAge(int age) {
-//		this.age = age;
-//	}
-//
-//	public String getPhone() {
-//		return phone;
-//	}
-//
-//	public void setPhone(String phone) {
-//		this.phone = phone;
-//	}
-//
-//	public String getEmail() {
-//		return email;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-////
-//	public String getImg_url() {
-//		return img_url;
-//	}
-//
-//	public void setImg_url(String img_url) {
-//		this.img_url = img_url;
-//	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 }

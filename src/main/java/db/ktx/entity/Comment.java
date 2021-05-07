@@ -11,8 +11,8 @@ import java.util.Date;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String Content;
+    private int cmt_id;
+    private String content;
     private Date time;
 
     @ManyToOne
@@ -28,19 +28,19 @@ public class Comment {
     }
 
     public int getId() {
-        return id;
+        return cmt_id;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.cmt_id = id;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public Date getTime() {

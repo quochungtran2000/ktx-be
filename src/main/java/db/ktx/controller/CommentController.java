@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cmt")
+//@CrossOrigin
 public class CommentController {
 
     @Autowired
@@ -21,23 +22,24 @@ public class CommentController {
         return service.getComment(comment);
     }
 
-    @GetMapping(path = "{id}")
+    @GetMapping("/id/{id}")
     public Optional<Comment> getCmtById(@PathVariable("id") int id){
         return service.getCommentById(id);
     }
 
-    @PostMapping("/comment")
-    public Comment creatCmt(@Validated @RequestBody Comment comment){
+    @PostMapping("/createComment")
+    public Comment createCmt(@Validated @RequestBody Comment comment){
         return service.createComment(comment);
     }
 
-    @PutMapping("/comment")
-    public String putCmt(@Validated @RequestBody Comment comment){
+    @PutMapping("/update")
+    public Comment putCmt( @RequestBody Comment comment){
         return service.updateComment(comment);
     }
 
-    @DeleteMapping(path = "{id}")
-    public String deleteCmnt(@PathVariable("id") int id ){
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteCmt(@PathVariable("id") int id ){
         service.deleteComment(id);
         return "Xoa Thanh Cong";
     }

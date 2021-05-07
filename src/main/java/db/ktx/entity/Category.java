@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,17 +18,20 @@ public class Category {
 	private String name;
 	private String classes;
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "category")
-//	Set<Post> listPost;
-//
-//	public Set<Post> getListPost() {
-//		return listPost;
-//	}
-//
-//	public void setListPost(Set<Post> listPost) {
-//		this.listPost = listPost;
-//	}
+	@JsonIgnore
+	@OneToMany(mappedBy = "category")
+	List<Post> listPost = new ArrayList<>();
+	public Category(){
+
+	}
+
+	public List<Post> getListPost() {
+		return listPost;
+	}
+
+	public void setListPost(List<Post> listPost) {
+		this.listPost = listPost;
+	}
 
 	public int getCategory_id() {
 		return category_id;

@@ -10,30 +10,31 @@ import java.util.Optional;
 
 @Service
 public class CommentService {
+
     @Autowired
     private CommentRepository repository;
 
     public Comment createComment(Comment comment){
+
         return repository.save(comment);
     }
 
     public List<Comment> getComment(Comment comment){
+
         return repository.findAll();
     }
 
     public Optional<Comment> getCommentById(int id){
+
         return repository.findById(id);
     }
 
-    public String updateComment(Comment comment){
-        try{
-            repository.save(comment);
-        }catch (Exception ex){
-            ex.getMessage();
-            return "false";
-        }
-        return "true";
+    public Comment updateComment(Comment comment){
+        Comment updateCmt = repository.findById(comment.getId()).orElse(null);
+        updateCmt.setContent(comment.getContent());
+        return repository.save(comment);
     }
+
 
     public void deleteComment(int id){
         repository.deleteById(id);
