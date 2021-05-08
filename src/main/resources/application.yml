@@ -1,0 +1,12 @@
+
+spring:
+  datasource:
+    username: hung
+    password: hung1708
+    url: jdbc:mysql://ktx.cirubvkt6eb3.us-east-2.rds.amazonaws.com/raovat
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.MySQL5Dialect
