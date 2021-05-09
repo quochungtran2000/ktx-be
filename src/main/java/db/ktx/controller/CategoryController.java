@@ -1,7 +1,6 @@
 package db.ktx.controller;
 
 import db.ktx.entity.Category;
-import db.ktx.entity.Location;
 import db.ktx.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

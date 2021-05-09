@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/post")
-//@CrossOrigin(origins = "*" , maxAge = 3600)
 public class PostController {
 
     @Autowired

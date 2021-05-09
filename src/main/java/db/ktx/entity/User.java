@@ -7,11 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
-import java.awt.geom.GeneralPath;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "user" )
