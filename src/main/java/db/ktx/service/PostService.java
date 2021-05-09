@@ -1,9 +1,14 @@
 package db.ktx.service;
 
+import db.ktx.entity.Category;
+import db.ktx.entity.Location;
 import db.ktx.entity.Post;
+import db.ktx.entity.User;
 import db.ktx.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,5 +42,19 @@ public class PostService {
         postRepository.deleteById(id);
     }
 
+    //getPostByLocation
+    public List<Post> getPostByLocation(Location location){
+        return postRepository.getPostByLocation(location);
+    }
+
+    //getPostByLocationAndCategory
+    public List<Post> getPostByLocationAndCategory(Location location, Category category){
+        return postRepository.getPostByLocationAndCategory(location,category);
+    }
+
+    //getPostByUser
+    public List<Post> getPostByUser(User user){
+        return postRepository.getPostByUser(user);
+    }
 
 }
