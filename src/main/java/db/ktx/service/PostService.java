@@ -52,6 +52,11 @@ public class PostService {
         return postRepository.getPostByLocationAndCategory(location,category);
     }
 
+    //getPostByCategory
+    public List<Post> getPostByCategory(Category category){
+        return postRepository.getPostByCategory(category);
+    }
+
     //getPostByUser
     public List<Post> getPostByUser(User user){
         return postRepository.getPostByUser(user);

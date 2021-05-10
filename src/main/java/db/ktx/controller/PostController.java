@@ -21,26 +21,32 @@ public class PostController {
     @Autowired
     public PostService postService;
 
-//    @GetMapping("/post")
-//    public List<Post> getAllPost(){
-//
-//        return postService.getAllPost();
-//    }
+    @GetMapping("/post")
+    @ResponseBody
+    public List<Post> getByLocationAndCategory(@RequestParam(value= "location", required = false) Location location, @RequestParam(value = "category",required = false)
+            Category category){
+        System.out.print(location);
+        System.out.print(category);
+        List<Post> data = null;
+        if(location == null && category == null){
+            data = postService.getAllPost();
+        }
+        else if(location != null && category != null){
+            data = postService.getPostByLocationAndCategory(location, category);
+        }else{
+            if(location != null){
+                data = postService.getPostByLocation(location);
+            }else{
+                data = postService.getPostByCategory(category);
+            }
+        }
+        return data;
+    }
+
+
     @GetMapping("/id/{id}")
     public Optional<Post> getById(@PathVariable("id")  int id){
         return postService.getById(id);
-    }
-
-    @GetMapping("/post")
-    @ResponseBody
-    public List<Post> getByLocation(@RequestParam("location") Location id){
-        return postService.getPostByLocation(id);
-    }
-    @GetMapping("/post1")
-    @ResponseBody
-    public List<Post> getByLocationAndCategory(@RequestParam("location") Location location, @RequestParam("category")
-                                               Category category){
-        return postService.getPostByLocationAndCategory(location, category);
     }
 
     @GetMapping("/post2")
@@ -48,7 +54,6 @@ public class PostController {
     public List<Post> getByUser(@RequestParam("user")User user){
         return postService.getPostByUser(user);
     }
-
 
     @PostMapping("/createPost")
     public Post createPost(@Validated @RequestBody Post post){
@@ -58,7 +63,6 @@ public class PostController {
     @PutMapping("/update")
     public Post updatePost(@RequestBody Post post){
         return postService.updatePost(post);
-
     }
 
     @DeleteMapping("/delete/{id}")

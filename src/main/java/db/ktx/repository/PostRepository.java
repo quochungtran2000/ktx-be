@@ -20,6 +20,9 @@ public interface PostRepository extends JpaRepository<Post , Integer >{
     @Query("select u from Post u where u.location = ?1")
     List<Post> getPostByLocation(Location location);
 
+    @Query("select u from Post u where u.category = ?1")
+    List<Post> getPostByCategory(Category category);
+
     @Query("select u from Post u where u.location = ?1 and u.category =?2")
     List<Post> getPostByLocationAndCategory(Location location, Category category);
 
