@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/cmt")
-//@CrossOrigin
 public class CommentController {
 
     @Autowired
