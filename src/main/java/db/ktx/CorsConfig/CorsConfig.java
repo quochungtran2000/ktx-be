@@ -15,7 +15,7 @@ public class CorsConfig {
 				registry.addMapping("/**")
 					.allowedMethods("GET", "POST", "PUT", "OPTIONS", "DELETE")
 					.allowedHeaders("*")
-					.allowedOrigins("http://localhost:3000");
+					.allowedOrigins("http://localhost:3000,https://ktx-marketplace.vercel.app/");
 			}
 		};
 	}
