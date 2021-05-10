@@ -44,7 +44,7 @@ public class PostController {
     }
 
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/post/{id}")
     public Optional<Post> getById(@PathVariable("id")  int id){
         return postService.getById(id);
     }
