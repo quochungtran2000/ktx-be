@@ -35,6 +35,7 @@ public class User {
 	List<Comment> listComment = new ArrayList<>();
 	public User(){}
 
+
 	public List<Comment> getListComment() {
 		return listComment;
 	}

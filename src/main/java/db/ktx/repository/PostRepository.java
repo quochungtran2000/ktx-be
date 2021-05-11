@@ -4,6 +4,8 @@ import db.ktx.entity.Category;
 import db.ktx.entity.Location;
 import db.ktx.entity.Post;
 import db.ktx.entity.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -28,4 +30,17 @@ public interface PostRepository extends JpaRepository<Post , Integer >{
 
     @Query("select u from Post u where u.user = ?1")
     List<Post>  getPostByUser(User user);
+
+    @Query("select u from Post u")
+    Page<Post> findPost(Pageable pageable);
+
+    Page<Post> findByLocation(Location location, Pageable pageable);
+
+    Page<Post> findByCategory(Category location, Pageable pageable);
+
+    Page<Post> findByLocationAndCategory(Location location,Category category, Pageable pageable);
+
+
+
+
 }

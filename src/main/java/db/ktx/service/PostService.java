@@ -6,6 +6,8 @@ import db.ktx.entity.Post;
 import db.ktx.entity.User;
 import db.ktx.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
