@@ -33,7 +33,7 @@ public class PostController {
     @GetMapping("/post")
     @ResponseBody
     public ResponseEntity<?>/*List<Post>*/ getByLocationAndCategory(@RequestParam(value= "location", required = false) Location location, @RequestParam(value = "category",required = false)
-            Category category, @RequestParam(name = "page" , required = false, defaultValue = "0") int page,
+            Category category, @RequestParam(name = "page" , required = false, defaultValue = "1") int page,
                                @RequestParam(name = "size", required = false, defaultValue = "12") int size
 
     ){
@@ -41,7 +41,7 @@ public class PostController {
         System.out.print(category);
         try{
             List<Post> posts = new ArrayList<Post>();
-            Pageable pageable = PageRequest.of(page,size);
+            Pageable pageable = PageRequest.of(page-1,size);
 
             Page<Post> pageTuts ;
             if(location == null && category == null){
