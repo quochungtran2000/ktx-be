@@ -34,7 +34,7 @@ public class PostController {
     @ResponseBody
     public ResponseEntity<?>/*List<Post>*/ getByLocationAndCategory(@RequestParam(value= "location", required = false) Location location, @RequestParam(value = "category",required = false)
             Category category, @RequestParam(name = "page" , required = false, defaultValue = "0") int page,
-                               @RequestParam(name = "size", required = false, defaultValue = "3") int size
+                               @RequestParam(name = "size", required = false, defaultValue = "12") int size
 
     ){
         System.out.print(location);
