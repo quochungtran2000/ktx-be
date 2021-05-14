@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,9 @@ public class UserService{
 				return "Nguoi dung da ton tai";
 			}
 		}
+		Date now = new Date();
+		user.setCreate_at(now);
+		user.setUpdate_at(now);
 		repository.save(user);
 		return "Them thanh cong";
 	}
@@ -33,7 +37,7 @@ public class UserService{
 		return repository.findById(id);
 	}
 
-	public Optional<User> getUserByUsername(String username){
+	public User getUserByUsername(String username){
 		return repository.findByUsername(username);
 	}
 	public User updateUser(User updateUser){
@@ -43,6 +47,8 @@ public class UserService{
 		baseUser.setAge(updateUser.getAge());
 		baseUser.setPhone(updateUser.getPhone());
 		baseUser.setAddress(updateUser.getAddress());
+		Date now = new Date();
+		baseUser.setUpdate_at(now);
 		return repository.save(baseUser);
 	}
 	//Doi mat khau
@@ -66,5 +72,17 @@ public class UserService{
 	public void deleteUserById(Long id) {
 		repository.deleteById(id);
 	}
+
+	public String Login(String username, String password){
+
+		User user = repository.login(username, password);
+		if(user != null){
+			return user.getUserid().toString();
+		}
+		else
+			return "khong dung";
+
+	}
+
 
 }

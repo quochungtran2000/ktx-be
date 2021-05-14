@@ -5,9 +5,11 @@ package db.ktx.entity;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -20,6 +22,8 @@ public class Post {
     private String content;
     private String imgUrl;
     private int price;
+    private Date create_at;
+    private Date update_at;
 
     @ManyToOne()
     @JoinColumn(name = "user", nullable = false)
@@ -36,6 +40,22 @@ public class Post {
     @JsonIgnore
     @OneToMany(mappedBy = "post")
     List<Comment> listComment = new ArrayList<>();
+
+    public Date getCreate_at() {
+        return create_at;
+    }
+
+    public void setCreate_at(Date create_at) {
+        this.create_at = create_at;
+    }
+
+    public Date getUpdate_at() {
+        return update_at;
+    }
+
+    public void setUpdate_at(Date update_at) {
+        this.update_at = update_at;
+    }
 
     public String getImgUrl() {
         return imgUrl;

@@ -70,4 +70,9 @@ public class UserController {
 		return "Successfully";
 	}
 
+	@GetMapping("/login")
+	public List<User> login(User user){
+		return service.getUsers();
+	}
+
 }

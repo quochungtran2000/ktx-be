@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +23,10 @@ public class PostService {
     private PostRepository postRepository;
 
     public Post insertPost(Post post){
-          return  postRepository.save(post);
+        Date now = new Date();
+        post.setCreate_at(now);
+        post.setUpdate_at(now);
+        return  postRepository.save(post);
 
     }
     public Optional<Post> getById(int id){
@@ -36,6 +40,8 @@ public class PostService {
         Post basePost = postRepository.findById(post.getId()).orElse(null);
         basePost.setTitle(post.getTitle());
         basePost.setContent(post.getContent());
+        Date now = new Date();
+        basePost.setUpdate_at(now);
 //      asePost.setCategory_id(post.getCategory_id());
 
         return postRepository.save(basePost);

@@ -20,18 +20,13 @@ public class MyUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = new User();
-        User user = repository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException(username));
+           //User user = new User();
+        User user = repository.findByUsername(username);
+        if(user ==  null){
+            throw new UsernameNotFoundException("user not found");
+        }
         return new MyUserDetails(user);
 
     }
-//    // JWTAuthenticationFilter sẽ sử dụng hàm này
-//    @Transactional
-//    public UserDetails loadUserById(Long id) {
-//        User user = repository.findById(id).orElseThrow(
-//                () -> new UsernameNotFoundException("User not found with id : " + id)
-//        );
-//
-//        return new MyUserDetails(user);
-//    }
+
 }
