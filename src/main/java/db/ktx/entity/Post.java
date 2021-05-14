@@ -18,6 +18,8 @@ public class Post {
     private int id;
     private String title;
     private String content;
+    private String imgUrl;
+    private int price;
 
     @ManyToOne()
     @JoinColumn(name = "user", nullable = false)
@@ -34,6 +36,22 @@ public class Post {
     @JsonIgnore
     @OneToMany(mappedBy = "post")
     List<Comment> listComment = new ArrayList<>();
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public User getUser() {
         return user;
