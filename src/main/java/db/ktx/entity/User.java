@@ -39,7 +39,8 @@ public class User {
 	List<Comment> listComment = new ArrayList<>();
 	public User(){}
 
-	public Date getCreate_at() {
+
+    public Date getCreate_at() {
 		return create_at;
 	}
 

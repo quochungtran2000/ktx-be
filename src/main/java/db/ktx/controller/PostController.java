@@ -22,7 +22,7 @@ import java.util.*;
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping
-public class PostController {
+public class  PostController {
 
     @Autowired
     public PostService postService;

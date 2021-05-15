@@ -73,16 +73,7 @@ public class UserService{
 		repository.deleteById(id);
 	}
 
-	public String Login(String username, String password){
 
-		User user = repository.login(username, password);
-		if(user != null){
-			return user.getUserid().toString();
-		}
-		else
-			return "khong dung";
-
-	}
 
 
 }

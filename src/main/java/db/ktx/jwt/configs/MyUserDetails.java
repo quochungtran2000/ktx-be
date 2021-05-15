@@ -13,9 +13,12 @@ import java.util.Collections;
 public class MyUserDetails implements UserDetails {
 
     User user;
+    private String username;
+    private String password;
 
     public MyUserDetails(User user) {
-        this.user = user;
+        this.username = user.getUsername();
+        this.password = user.getPassword();
     }
 
     public User getUser() {
@@ -33,17 +36,18 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+//        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        return null;
     }
 
     @Override

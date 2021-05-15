@@ -3,10 +3,7 @@ package db.ktx.controller;
 import db.ktx.entity.User;
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import db.ktx.repository.UserRepository;
@@ -15,6 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.access.annotation.Secured;
 //import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +36,32 @@ public class UserController {
 		return service.insertUser(user);
 	}
 
+
 	@GetMapping("/user")
-	public List<User> getUsers(){
-		return service.getUsers();
+	@ResponseBody
+	public ResponseEntity<?> getUsers(
+			@RequestParam(name = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(name = "size", required = false, defaultValue = "12") int size){
+			try {
+				List<User> users = new ArrayList<User>();
+				Pageable pageable = PageRequest.of(page -1, size);
+
+				Page<User> pageTuts;
+				pageTuts = repository.findUser(pageable);
+
+				users = pageTuts.getContent();
+
+				Map<String, Object> response = new HashMap<>();
+				response.put("post", users);
+				response.put("currentPage", pageTuts.getNumber());
+				response.put("totalItems", pageTuts.getTotalElements());
+				response.put("totalPages", pageTuts.getTotalPages());
+
+				return new ResponseEntity<>(response, HttpStatus.OK);
+			}
+			catch (Exception e) {
+				return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+			}
 	}
 
 	@GetMapping(path = "{userid}")

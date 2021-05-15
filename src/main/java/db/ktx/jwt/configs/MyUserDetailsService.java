@@ -19,14 +19,15 @@ public class MyUserDetailsService implements UserDetailsService{
     private  UserRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-           //User user = new User();
+    public UserDetails loadUserByUsername(String username) {
+        // Kiểm tra xem user có tồn tại trong database không?
         User user = repository.findByUsername(username);
-        if(user ==  null){
-            throw new UsernameNotFoundException("user not found");
+        if (user == null) {
+            throw new UsernameNotFoundException(username);
         }
         return new MyUserDetails(user);
-
     }
+
+
 
 }
