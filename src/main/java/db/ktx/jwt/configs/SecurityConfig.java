@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //We don't need CSRF for this example
         http.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate","/post","/category","/location","/post/{id}","/banner").permitAll()
+                .authorizeRequests().antMatchers("/authenticate","/post","/category","/location","/post/{id}","/banner","/user/createUser").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
