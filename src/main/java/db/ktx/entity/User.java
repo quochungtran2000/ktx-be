@@ -15,7 +15,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "user" )
-@CrossOrigin(origins = "*")
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

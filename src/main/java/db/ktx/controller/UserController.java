@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 
-	@GetMapping("/getUser")
+	@RequestMapping(value = "/getUser", method = RequestMethod.GET)
 	public User getUser (HttpServletRequest request) {
 //		return (int) request.getAttribute("userID");
 		System.out.print(request);
@@ -41,6 +41,7 @@ public class UserController {
 
 		return service.getUserByUsername(principal.getName());
 	}
+
 
 	@GetMapping("/")
 	@ResponseBody
