@@ -61,6 +61,15 @@ public class Post {
         return price;
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl){
+        this.imgUrl = imgUrl;
+    }
+
+
     public void setPrice(int price) {
         this.price = price;
     }
@@ -76,6 +85,8 @@ public class Post {
     public Category getCategory() {
         return category;
     }
+
+
 
     public void setCategory(Category category) {
         this.category = category;
@@ -95,7 +106,7 @@ public class Post {
     @JsonCreator
     public Post(@JsonProperty("id") int id,@JsonProperty("title") String title, @JsonProperty("content") String content,
                 @JsonProperty("user") User user,@JsonProperty("category") Category category,
-                @JsonProperty("location") Location location,@JsonProperty("img_url") String img_url){
+                @JsonProperty("location") Location location,@JsonProperty("imgUrl") String imgUrl){
         this.id = id;
         this.title = title;
         this.content = content;
