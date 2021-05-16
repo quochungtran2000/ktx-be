@@ -26,6 +26,7 @@ public class User {
 	private String name;
 	private int age;
 	private String phone;
+	private String img_url;
 	private String address;
 	private Date create_at;
 	private Date update_at;
@@ -148,5 +149,13 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getImg_url() {
+		return img_url;
+	}
+
+	public void setImg_url(String img_url) {
+		this.img_url = img_url;
 	}
 }
