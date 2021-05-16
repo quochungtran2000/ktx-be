@@ -21,6 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userid;
 	private String username;
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String password;
 	private String email;
 	private String name;
@@ -29,6 +30,7 @@ public class User {
 	private String address;
 	private Date create_at;
 	private Date update_at;
+	private String avtUrl;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -39,8 +41,15 @@ public class User {
 	List<Comment> listComment = new ArrayList<>();
 	public User(){}
 
+	public String getAvtUrl() {
+		return avtUrl;
+	}
 
-    public Date getCreate_at() {
+	public void setAvtUrl(String avtUrl) {
+		this.avtUrl = avtUrl;
+	}
+
+	public Date getCreate_at() {
 		return create_at;
 	}
 
