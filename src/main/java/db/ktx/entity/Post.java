@@ -57,14 +57,6 @@ public class Post {
         this.update_at = update_at;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
     public int getPrice() {
         return price;
     }
@@ -103,10 +95,11 @@ public class Post {
     @JsonCreator
     public Post(@JsonProperty("id") int id,@JsonProperty("title") String title, @JsonProperty("content") String content,
                 @JsonProperty("user") User user,@JsonProperty("category") Category category,
-                @JsonProperty("location") Location location){
+                @JsonProperty("location") Location location,@JsonProperty("img_url") String img_url){
         this.id = id;
         this.title = title;
         this.content = content;
+        this.imgUrl = imgUrl;
         this.category = category;
         this.location = location;
         this.user = user;
