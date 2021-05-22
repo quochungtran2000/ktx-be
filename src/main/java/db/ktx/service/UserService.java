@@ -1,5 +1,6 @@
 package db.ktx.service;
 
+//import db.ktx.entity.Role;
 import db.ktx.entity.User;
 import db.ktx.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

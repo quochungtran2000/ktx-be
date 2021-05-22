@@ -1,11 +1,20 @@
 package db.ktx.controller;
 
+//import db.ktx.entity.Role;
+import db.ktx.entity.Role;
+import db.ktx.entity.Roles;
 import db.ktx.entity.User;
 
 import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import db.ktx.jwt.configs.MyUserDetailsService;
+import db.ktx.jwt.models.AuthenticationResponse;
+import db.ktx.jwt.models.SignupRequest;
+import db.ktx.jwt.util.JwtUtil;
+//import db.ktx.repository.RoleRepository;
+import db.ktx.repository.RoleRepository;
 import db.ktx.repository.UserRepository;
 import db.ktx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +26,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +43,55 @@ public class UserController {
 	@Autowired
 	private UserRepository repository;
 
-	@PostMapping("/createUser")
-	public String createUser (@Validated @RequestBody User user){
-		return service.insertUser(user);
+	@Autowired
+	private PasswordEncoder encoder;
+
+	@Autowired
+	private RoleRepository roleRepository;
+
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+
+
+	@Autowired
+	private JwtUtil jwtTokenUtil;
+//	@PostMapping("/signup")
+//	public String createUser (@Validated @RequestBody User user){
+//		return service.insertUser(user);
+//
+//	}
+	@PostMapping("/signup")
+	public ResponseEntity<?> createUser(@RequestBody  SignupRequest signupRequest){
+		User user = new User(signupRequest.getUsername(),
+				signupRequest.getEmail()
+				,encoder.encode(signupRequest.getPassword()));
+
+		Set<String> stringroles = signupRequest.getRole();
+		Set<Role> roles = new HashSet<>();
+
+		if(stringroles ==  null){
+			Role userRole = roleRepository.findByName(Roles.USER);
+			if(userRole == null) {
+				throw new RuntimeException("Error: Role is not found ");
+			}
+			roles.add(userRole);
+		}
+		else{
+			Role adminRole= roleRepository.findByName(Roles.ADMIN);
+			if(adminRole == null){
+				throw new RuntimeException("Error : Role is not found");
+			}
+			roles.add(adminRole);
+		}
+		user.setRoles(roles);
+		service.insertUser(user);
+
+		final UserDetails userDetails = userDetailsService
+				.loadUserByUsername(user.getUsername());
+
+		final String token = jwtTokenUtil.generateToken(userDetails);
+
+		return ResponseEntity.ok(new AuthenticationResponse(token));
 	}
 
 
@@ -99,5 +157,11 @@ public class UserController {
 	public List<User> login(User user){
 		return service.getUsers();
 	}
+
+//	@GetMapping("/admin")
+//	@PreAuthorize("hasRole('ADMIN')")
+//	public String testadmin(){
+//		return "admin";
+//	}
 
 }

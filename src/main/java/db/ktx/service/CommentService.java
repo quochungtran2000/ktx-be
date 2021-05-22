@@ -5,6 +5,7 @@ import db.ktx.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,8 @@ public class CommentService {
     private CommentRepository repository;
 
     public Comment createComment(Comment comment){
-
+        Date now = new Date();
+        comment.setTime(now);
         return repository.save(comment);
     }
 

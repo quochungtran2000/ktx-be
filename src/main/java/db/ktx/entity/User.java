@@ -9,8 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
+import java.awt.*;
+import java.util.*;
 import java.util.List;
 
 @Entity
@@ -32,6 +32,26 @@ public class User {
 	private Date update_at;
 	private String avtUrl;
 
+	//role
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(
+			name = "users_roles",
+			joinColumns = @JoinColumn(name = "userid"),
+			inverseJoinColumns = @JoinColumn(name = "role_id")
+	)
+	private Set<Role> roles = new HashSet<>();
+
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
+//	@Enumerated(EnumType.STRING)
+//	private Roles userRole;
+//
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	List<Post> listPost = new ArrayList<>();
@@ -40,6 +60,20 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	List<Comment> listComment = new ArrayList<>();
 	public User(){}
+
+	public User(String username, String password, String email){
+		this.username = username;
+		this.password = password;
+		this.email = email;
+	}
+
+//	public Roles getUserRole() {
+//		return userRole;
+//	}
+//
+//	public void setUserRole(Roles userRole) {
+//		this.userRole = userRole;
+//	}
 
 	public String getAvtUrl() {
 		return avtUrl;
