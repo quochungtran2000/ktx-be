@@ -18,9 +18,6 @@ import db.ktx.repository.RoleRepository;
 import db.ktx.repository.UserRepository;
 import db.ktx.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.access.annotation.Secured;
-//import org.springframework.security.access.prepost.PreAuthorize;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -31,6 +28,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
+import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -95,7 +96,17 @@ public class UserController {
 	}
 
 
-	@GetMapping("/user")
+	@RequestMapping(value = "/getUser", method = RequestMethod.GET)
+	public User getUser (HttpServletRequest request) {
+//		return (int) request.getAttribute("userID");
+		System.out.print(request);
+		Principal principal = request.getUserPrincipal();
+
+		return service.getUserByUsername(principal.getName());
+	}
+
+
+	@GetMapping("/")
 	@ResponseBody
 	public ResponseEntity<?> getUsers(
 			@RequestParam(name = "page", required = false, defaultValue = "1") int page,
@@ -110,7 +121,7 @@ public class UserController {
 				users = pageTuts.getContent();
 
 				Map<String, Object> response = new HashMap<>();
-				response.put("post", users);
+				response.put("users", users);
 				response.put("currentPage", pageTuts.getNumber());
 				response.put("totalItems", pageTuts.getTotalElements());
 				response.put("totalPages", pageTuts.getTotalPages());

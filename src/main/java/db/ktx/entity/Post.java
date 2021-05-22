@@ -19,6 +19,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
+    @Lob
+    @Column(length=1000000)
     private String content;
     private String imgUrl;
     private int price;
@@ -57,17 +59,18 @@ public class Post {
         this.update_at = update_at;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public String getImgUrl() {
         return imgUrl;
     }
 
-    public void setImgUrl(String imgUrl) {
+    public void setImgUrl(String imgUrl){
         this.imgUrl = imgUrl;
     }
 
-    public int getPrice() {
-        return price;
-    }
 
     public void setPrice(int price) {
         this.price = price;
@@ -84,6 +87,8 @@ public class Post {
     public Category getCategory() {
         return category;
     }
+
+
 
     public void setCategory(Category category) {
         this.category = category;
@@ -103,10 +108,11 @@ public class Post {
     @JsonCreator
     public Post(@JsonProperty("id") int id,@JsonProperty("title") String title, @JsonProperty("content") String content,
                 @JsonProperty("user") User user,@JsonProperty("category") Category category,
-                @JsonProperty("location") Location location){
+                @JsonProperty("location") Location location,@JsonProperty("imgUrl") String imgUrl){
         this.id = id;
         this.title = title;
         this.content = content;
+        this.imgUrl = imgUrl;
         this.category = category;
         this.location = location;
         this.user = user;
