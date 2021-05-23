@@ -9,19 +9,29 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/category")
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService service;
 
-	@GetMapping("category")
+	@GetMapping()
 	public List<Category> getCategory(){
 		return service.getCategory();
 	}
 	
-	@PostMapping("/createCategory")
-	public Category createUser (@RequestBody Category category){
+	@PostMapping()
+	public Category createCategory (@RequestBody Category category){
 		return service.insertCategory(category);
 	}
-	
+
+	@PutMapping()
+	public Category updateCategory (@RequestBody Category category) {
+		return service.updateCategory(category);
+	}
+	@DeleteMapping("/{id}")
+	public String deleteLocation (@PathVariable("id") int id){
+		service.deleteById(id);
+		return "Xoa thanh cong";
+	}
 }

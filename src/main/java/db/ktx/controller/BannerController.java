@@ -9,18 +9,30 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
+@RequestMapping("/banner")
 public class BannerController {
 	@Autowired
 	private BannerService service;
 	
-	@GetMapping("banner")
+	@GetMapping()
 	public List<Banner> getBanner(){
 		return service.getBanner();
 	}
 	
-	@PostMapping("/createBanner")
+	@PostMapping()
 	public Banner createBanner (@RequestBody Banner banner){
 	return service.insertBanner(banner);
 }
+
+	@PutMapping()
+	public Banner updateBanner (@RequestBody Banner banner) {
+		return service.updateBanner(banner);
+	}
+
+	@DeleteMapping("/{id}")
+	public String deleteBanner (@PathVariable("id") int id){
+		service.deleteById(id);
+		return "Xoa thanh cong";
+	}
 
 }

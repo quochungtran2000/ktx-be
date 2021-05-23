@@ -40,6 +40,7 @@ public interface PostRepository extends JpaRepository<Post , Integer >{
 
     Page<Post> findByLocationAndCategory(Location location,Category category, Pageable pageable);
 
+    Page<Post> findByUser(User user, Pageable pageable);
 
 
 

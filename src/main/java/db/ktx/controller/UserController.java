@@ -63,9 +63,15 @@ public class UserController {
 //	}
 	@PostMapping("/signup")
 	public ResponseEntity<?> createUser(@RequestBody  SignupRequest signupRequest){
-		User user = new User(signupRequest.getUsername(),
-				signupRequest.getEmail()
-				,encoder.encode(signupRequest.getPassword()));
+		User user = new User(
+				signupRequest.getUsername(),
+				encoder.encode(signupRequest.getPassword()),
+				signupRequest.getEmail(),
+				signupRequest.getAge(),
+				signupRequest.getPhone(),
+				signupRequest.getImg_url(),
+				signupRequest.getAddress(),
+				signupRequest.getName());
 
 		Set<String> stringroles = signupRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -106,7 +112,7 @@ public class UserController {
 	}
 
 
-	@GetMapping("/")
+	@GetMapping()
 	@ResponseBody
 	public ResponseEntity<?> getUsers(
 			@RequestParam(name = "page", required = false, defaultValue = "1") int page,
@@ -133,7 +139,7 @@ public class UserController {
 			}
 	}
 
-	@GetMapping(path = "{userid}")
+	@GetMapping("/{userid}")
 	public Optional<User> getUserById (@PathVariable("userid") Long id){
 		return service.getUserById(id);
 	}
@@ -143,7 +149,7 @@ public class UserController {
 //		return service.getUserByUsername(username);
 //	}
 
-	@PutMapping("/update")
+	@PutMapping()
 	public User updateUser (@RequestBody User user){
 		return service.updateUser(user);
 	}
@@ -157,7 +163,7 @@ public class UserController {
 //	public String deleteByUsername(@PathVariable("username") String username){
 //		return service.deleteUserByUsername(username);
 //	}
-	@DeleteMapping(path = "{userid}")
+	@DeleteMapping("/{userid}")
 	@ResponseBody
 	public String deleteById(@PathVariable("userid") Long id){
 		service.deleteUserById(id);

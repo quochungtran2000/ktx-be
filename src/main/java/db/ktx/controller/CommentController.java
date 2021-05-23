@@ -11,34 +11,34 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/cmt")
+@RequestMapping("/comment")
 public class CommentController {
 
     @Autowired
     private  CommentService service;
 
-    @GetMapping("/comment")
+    @GetMapping("/")
     public List<Comment> viewAllComment(Comment comment){
         return service.getComment(comment);
     }
 
-    @GetMapping("/id/{id}")
+    @GetMapping("/{id}")
     public Optional<Comment> getCmtById(@PathVariable("id") int id){
         return service.getCommentById(id);
     }
 
-    @PostMapping("/createComment")
+    @PostMapping("/")
     public Comment createCmt(@Validated @RequestBody Comment comment){
         return service.createComment(comment);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/")
     public Comment putCmt( @RequestBody Comment comment){
         return service.updateComment(comment);
     }
 
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public String deleteCmt(@PathVariable("id") int id ){
         service.deleteComment(id);
         return "Xoa Thanh Cong";
