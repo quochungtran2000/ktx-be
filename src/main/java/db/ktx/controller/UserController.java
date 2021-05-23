@@ -65,13 +65,8 @@ public class UserController {
 	public ResponseEntity<?> createUser(@RequestBody  SignupRequest signupRequest){
 		User user = new User(
 				signupRequest.getUsername(),
-				encoder.encode(signupRequest.getPassword()),
 				signupRequest.getEmail(),
-				signupRequest.getAge(),
-				signupRequest.getPhone(),
-				signupRequest.getImg_url(),
-				signupRequest.getAddress(),
-				signupRequest.getName());
+			encoder.encode(signupRequest.getPassword()));
 
 		Set<String> stringroles = signupRequest.getRole();
 		Set<Role> roles = new HashSet<>();
