@@ -30,7 +30,6 @@ public class User {
 	private String address;
 	private Date create_at;
 	private Date update_at;
-	private String avtUrl;
 
 	//role
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -48,9 +47,7 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-//	@Enumerated(EnumType.STRING)
-//	private Roles userRole;
-//
+
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
@@ -61,26 +58,15 @@ public class User {
 	List<Comment> listComment = new ArrayList<>();
 	public User(){}
 
-	public User(String username, String password, String email){
+	public User(String username, String password, String email, String name, int age, String phone, String img_Url){
 		this.username = username;
 		this.password = password;
 		this.email = email;
-	}
+		this.name = name;
+		this.age = age;
+		this.phone = phone;
+		this.img_url = img_Url;
 
-//	public Roles getUserRole() {
-//		return userRole;
-//	}
-//
-//	public void setUserRole(Roles userRole) {
-//		this.userRole = userRole;
-//	}
-
-	public String getAvtUrl() {
-		return avtUrl;
-	}
-
-	public void setAvtUrl(String avtUrl) {
-		this.avtUrl = avtUrl;
 	}
 
 	public Date getCreate_at() {

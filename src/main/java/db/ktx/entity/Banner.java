@@ -6,12 +6,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "banner")
 public class Banner {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String image_url;
 	private String link;
 	private String description;
+
+	public Banner(){
+
+	}
 
 	public int getId() {
 		return id;

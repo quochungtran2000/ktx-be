@@ -9,8 +9,9 @@ import java.util.List;
 @Entity
 @Table(name = "category")
 public class Category {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private int category_id;
 	private String name;
 	private String classes;
@@ -19,9 +20,12 @@ public class Category {
 	@OneToMany(mappedBy = "category")
 	List<Post> listPost = new ArrayList<>();
 	public Category(){
-
 	}
 
+	public Category(String name , String classes){
+		this.name = name;
+		this.classes = classes;
+	}
 	public List<Post> getListPost() {
 		return listPost;
 	}

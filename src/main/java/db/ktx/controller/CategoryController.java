@@ -3,13 +3,14 @@ package db.ktx.controller;
 import db.ktx.entity.Category;
 import db.ktx.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
-@RequestMapping("/category")
+//@CrossOrigin(origins = "*")
+@RequestMapping()
 public class CategoryController {
 	
 	@Autowired
@@ -20,7 +21,7 @@ public class CategoryController {
 		return service.getCategory();
 	}
 	
-	@PostMapping()
+	@PostMapping("/category/create")
 	public Category createCategory (@RequestBody Category category){
 		return service.insertCategory(category);
 	}

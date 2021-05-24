@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class CategoryService {
+
 	@Autowired
 	private CategoryRepository repository;
 
@@ -23,12 +24,14 @@ public class CategoryService {
 	return repository.findAll();
 }
 
+
 	public Category updateCategory(Category category) {
 		Category baseCategory = repository.findById(category.getCategory_id()).orElse(null);
 		baseCategory.setName(category.getName());
 		baseCategory.setClasses(category.getClasses());
 		return repository.save(baseCategory);
 	}
+
 
 	public void deleteById(int id) {
 		repository.deleteById(id);

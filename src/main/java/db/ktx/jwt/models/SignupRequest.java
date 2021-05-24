@@ -81,7 +81,7 @@ public class SignupRequest {
     }
 
 
-        public Set<String> getRole() {
+    public Set<String> getRole() {
         return role;
     }
 
