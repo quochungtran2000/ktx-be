@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin(origins = "*")
-@RequestMapping()
+@RequestMapping("/category")
 public class CategoryController {
 	
 	@Autowired
@@ -21,7 +21,7 @@ public class CategoryController {
 		return service.getCategory();
 	}
 	
-	@PostMapping("/category/create")
+	@PostMapping()
 	public Category createCategory (@RequestBody Category category){
 		return service.insertCategory(category);
 	}

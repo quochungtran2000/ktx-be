@@ -56,11 +56,7 @@ public class UserController {
 
 	@Autowired
 	private JwtUtil jwtTokenUtil;
-//	@PostMapping("/signup")
-//	public String createUser (@Validated @RequestBody User user){
-//		return service.insertUser(user);
-//
-//	}
+
 	@PostMapping("/signup")
 	public ResponseEntity<?> createUser(@RequestBody  SignupRequest signupRequest){
 		User user = new User(
