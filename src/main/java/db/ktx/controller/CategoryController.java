@@ -3,13 +3,16 @@ package db.ktx.controller;
 import db.ktx.entity.Category;
 import db.ktx.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+<<<<<<< HEAD
 //@CrossOrigin(origins = "*")
+=======
+@CrossOrigin(origins = "*")
+>>>>>>> 0e680678640b97293e4f16c35aab848a9872729f
 @RequestMapping("/category")
 public class CategoryController {
 	
