@@ -66,7 +66,11 @@ public class UserController {
 		User user = new User(
 				signupRequest.getUsername(),
 				signupRequest.getEmail(),
-			encoder.encode(signupRequest.getPassword()));
+				encoder.encode(signupRequest.getPassword()),
+				signupRequest.getName(),
+				signupRequest.getAge(),
+				signupRequest.getPhone(),
+				signupRequest.getImg_url());
 
 		Set<String> stringroles = signupRequest.getRole();
 		Set<Role> roles = new HashSet<>();
@@ -170,10 +174,5 @@ public class UserController {
 		return service.getUsers();
 	}
 
-//	@GetMapping("/admin")
-//	@PreAuthorize("hasRole('ADMIN')")
-//	public String testadmin(){
-//		return "admin";
-//	}
 
 }

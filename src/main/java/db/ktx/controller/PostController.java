@@ -85,7 +85,7 @@ public class  PostController {
         return  postService.insertPost(post);
     }
 
-    @PutMapping()
+    @PutMapping( )
     public Post updatePost(@RequestBody Post post){
         return postService.updatePost(post);
     }
