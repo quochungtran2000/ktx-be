@@ -22,7 +22,7 @@ public class Post {
     @Lob
     @Column(length=1000000)
     private String content;
-    private String imgUrl;
+    private String img_url;
     private int price;
     private Date create_at;
     private Date update_at;
@@ -63,14 +63,14 @@ public class Post {
         return price;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+
+    public String getImg_url() {
+        return img_url;
     }
 
-    public void setImgUrl(String imgUrl){
-        this.imgUrl = imgUrl;
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
-
 
     public void setPrice(int price) {
         this.price = price;
@@ -108,11 +108,11 @@ public class Post {
     @JsonCreator
     public Post(@JsonProperty("id") int id,@JsonProperty("title") String title, @JsonProperty("content") String content,
                 @JsonProperty("user") User user,@JsonProperty("category") Category category,
-                @JsonProperty("location") Location location,@JsonProperty("imgUrl") String imgUrl){
+                @JsonProperty("location") Location location,@JsonProperty("img_url") String img_url){
         this.id = id;
         this.title = title;
         this.content = content;
-        this.imgUrl = imgUrl;
+        this.img_url = img_url;
         this.category = category;
         this.location = location;
         this.user = user;
