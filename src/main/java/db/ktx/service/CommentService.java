@@ -1,7 +1,9 @@
 package db.ktx.service;
 
 import db.ktx.entity.Comment;
+import db.ktx.entity.User;
 import db.ktx.repository.CommentRepository;
+import db.ktx.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +17,18 @@ public class CommentService {
     @Autowired
     private CommentRepository repository;
 
-    public Comment createComment(Comment comment){
+    @Autowired
+    private UserRepository userRepository;
+
+    public String createComment(Comment comment){
+        if(comment.getContent() ==  null) {
+                return "Comment must not be empty";
+
+        }
         Date now = new Date();
         comment.setTime(now);
-        return repository.save(comment);
+        repository.save(comment);
+        return "Add comment successfully !";
     }
 
     public List<Comment> getComment(Comment comment){
@@ -30,12 +40,13 @@ public class CommentService {
 
         return repository.findById(id);
     }
-
-    public Comment updateComment(Comment comment){
-        Comment updateCmt = repository.findById(comment.getId()).orElse(null);
-        updateCmt.setContent(comment.getContent());
-        return repository.save(comment);
-    }
+//
+//    public Comment updateComment(Comment comment){
+//        Comment updateCmt = repository.findById(comment.getId()).orElse(null);
+//        updateCmt.setContent(comment.getContent());
+//        return repository.save(updateCmt);
+//
+//    }
 
 
     public void deleteComment(int id){
