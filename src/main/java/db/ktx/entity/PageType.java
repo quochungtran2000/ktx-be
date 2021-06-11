@@ -10,6 +10,7 @@ public class PageType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
+    @Column(unique = true)
     private staticPageType type;
     private String title;
     private String content;

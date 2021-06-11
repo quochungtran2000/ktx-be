@@ -1,6 +1,7 @@
 package db.ktx.service;
 
 import db.ktx.entity.PageType;
+import db.ktx.entity.staticPageType;
 import db.ktx.repository.PagetypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,10 @@ public class PagetypeService {
     public String insertPageType(PageType pageType){
         repository.save(pageType);
         return "true";
+    }
+
+    public PageType getByType(staticPageType type){
+        return repository.findByType(type);
     }
 
     public PageType updatePageType(PageType pageType){
