@@ -81,7 +81,7 @@ public class  PostController {
     }
 
     @PostMapping()
-    public Post createPost(@Validated @RequestBody Post post){
+    public Post createPost(@RequestBody Post post){
         return  postService.insertPost(post);
     }
 

@@ -40,6 +40,9 @@ public class PostService {
         Post basePost = postRepository.findById(post.getId()).orElse(null);
         basePost.setTitle(post.getTitle());
         basePost.setContent(post.getContent());
+        basePost.setImg_url(post.getImg_url());
+        basePost.setCategory(post.getCategory());
+        basePost.setLocation(post.getLocation());
         Date now = new Date();
         basePost.setUpdate_at(now);
 //      asePost.setCategory_id(post.getCategory_id());
