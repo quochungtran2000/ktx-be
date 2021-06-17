@@ -31,7 +31,7 @@ public interface PostRepository extends JpaRepository<Post , Integer >{
     @Query("select u from Post u where u.user = ?1")
     List<Post>  getPostByUser(User user);
 
-    @Query("select u from Post u")
+    @Query("select u from Post u order by u.id desc")
     Page<Post> findPost(Pageable pageable);
 
     Page<Post> findByLocation(Location location, Pageable pageable);
